@@ -13,15 +13,33 @@ SELECT DISTINCT district
 FROM address 
 WHERE district LIKE 'K%a' AND district NOT LIKE '% %'; 
 ```
+
 ![alt text](https://github.com/Mars12121/hw-12-03/blob/main/img/1.png)
 
 ### Задание 2
 
 Получите из таблицы платежей за прокат фильмов информацию по платежам, которые выполнялись в промежуток с 15 июня 2005 года по 18 июня 2005 года **включительно** и стоимость которых превышает 10.00.
 
+```
+SELECT payment_date, amount 
+FROM payment
+WHERE CAST(payment_date AS DATE) BETWEEN 20050615 AND 20050618 AND amount > 10.00; 
+```
+
+![alt text](https://github.com/Mars12121/hw-12-03/blob/main/img/2.png)
+
 ### Задание 3
 
 Получите последние пять аренд фильмов.
+
+```
+SELECT rental_id, payment_id, payment_date, amount
+FROM payment
+ORDER BY payment_date DESC
+LIMIT 5
+```
+
+![alt text](https://github.com/Mars12121/hw-12-03/blob/main/img/3.png)
 
 ### Задание 4
 
@@ -30,6 +48,14 @@ WHERE district LIKE 'K%a' AND district NOT LIKE '% %';
 Сформируйте вывод в результат таким образом:
 - все буквы в фамилии и имени из верхнего регистра переведите в нижний регистр,
 - замените буквы 'll' в именах на 'pp'.
+
+```
+SELECT LOWER(REPLACE(first_name, 'LL', 'PP')) AS Имя, LOWER(last_name) AS Фамилия
+FROM customer
+WHERE active = 1 AND (first_name LIKE 'Kelly' OR first_name LIKE 'Willie');
+```
+
+![alt text](https://github.com/Mars12121/hw-12-03/blob/main/img/4.png)
 
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
